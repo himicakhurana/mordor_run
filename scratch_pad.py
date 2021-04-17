@@ -10,4 +10,7 @@ all_group = pygame.sprite.Group([sprite2, sprite1])
 test_group = pygame.sprite.Group(sprite2)
 
 #inside loop
+
+sprite1.rect.centerx = x
+sprite1.rect.centery = y
 all_group.draw(win)
