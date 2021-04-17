@@ -13,4 +13,9 @@ test_group = pygame.sprite.Group(sprite2)
 
 sprite1.rect.centerx = x
 sprite1.rect.centery = y
+collide = pygame.sprite.spritecollide(sprite1, test_group, False)
+for s in collide:
+    print('collision')
+
+
 all_group.draw(win)
