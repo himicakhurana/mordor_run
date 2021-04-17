@@ -1,3 +1,5 @@
+from random import randint
+
 sprite1 = pygame.sprite.Sprite()
 sprite1.image = pygame.Surface((75, 75))
 sprite1.image.fill((255, 0, 0))
