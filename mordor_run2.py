@@ -51,6 +51,7 @@ while(dead==False):
                print("You are on edge.")
         if pressed[K_DOWN]:
             if(y+10)<800:
+                
                     y = y + 10
             else:
                 print("You are on edge.")
