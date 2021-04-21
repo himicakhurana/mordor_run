@@ -1,1 +1,4 @@
 git add .
+git commit -m "Adding local changes with sprite"
+git push
+-------------
