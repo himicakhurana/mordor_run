@@ -5,4 +5,5 @@ git push
 if any error run:
 git pull
 Press ESC
+Press :
 Press wq!
