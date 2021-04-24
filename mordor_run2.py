@@ -19,7 +19,8 @@ screen = pygame.display.set_mode(size, HWSURFACE | DOUBLEBUF | RESIZABLE)
 # Set title to the window
 pygame.display.set_caption("Mordor Run")
 
-
+pygame.mixer.music.load('02 Concerning Hobbits.mp3')
+pygame.mixer.music.play(0)
 dead=False
 path="/Users/schuylerb22/Desktop/thumb-1920-85585.jpg"
 clock = pygame.time.Clock()
