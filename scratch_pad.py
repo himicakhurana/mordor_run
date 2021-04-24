@@ -32,3 +32,4 @@ all_group.draw(win)
 ###### adding image to characters
 sprite1.image = pygame.image.load("image_path.png").convert()
 sprite1.image = pygame.transform.scale(sprite1.image, (75,75))
+sprite1.rect = sprite1.image.get_rect() 
