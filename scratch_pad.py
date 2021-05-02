@@ -76,4 +76,8 @@ m = 1
             # setting original values to v and m
             v = 10
             m = 1
-
+            #time stuff.
+            #outside loop
+   start_time = pygame.time.get_ticks()
+   current_time= pygame.time.get_ticks()
+   
