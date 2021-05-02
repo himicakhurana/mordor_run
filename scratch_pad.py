@@ -34,3 +34,46 @@ sprite1.image = pygame.image.load("image_path.png").convert()
 sprite1.image = pygame.transform.scale(sprite1.image, (75,75))
 sprite1.image = sprite1.image.convert_alpha()
 sprite1.rect = sprite1.image.get_rect() 
+
+
+#make character jump
+#outside the loop
+is_jump = False
+# velocity 
+v = 10
+#mass
+m = 1
+
+###inside loop for jump
+
+    if is_jump == False:
+
+        # if space bar is pressed
+        if keys[pygame.K_SPACE]:
+            # make isjump equal to True
+            is_jump = True
+
+    if is_jump:
+        # calculate force (F). F = 1 / 2 * mass * velocity ^ 2.
+        F = (1 / 2) * m * (v ** 2)
+
+        # change in the y co-ordinate
+        y -= F
+
+        # decreasing velocity while going up and become negative while coming down
+        v = v - 1
+
+        # object reached its maximum height
+        if v < 0:
+            # negative sign is added to counter negative velocity
+            m = -1
+
+        # objected reaches its original state
+        if v == -11:
+            # making isjump equal to false
+            is_jump = False
+
+            # setting original values to v and m
+            v = 10
+            m = 1
+
