@@ -90,3 +90,4 @@ dirvect.scale_to_length(10)
 sprite2.rect.move_ip(dirvect)
 ###move obstacle on x axis
 sprite2.rect.centerx = 800 - x
+sprite2.rect.centery = 700
