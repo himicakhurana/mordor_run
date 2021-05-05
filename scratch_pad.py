@@ -88,3 +88,5 @@ dirvect.normalize()
 # Move along this normalized vector towards the player at current speed.
 dirvect.scale_to_length(10)
 sprite2.rect.move_ip(dirvect)
+###move obstacle on x axis
+sprite2.rect.centerx = 800 - x
