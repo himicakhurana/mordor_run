@@ -27,11 +27,11 @@ clock = pygame.time.Clock()
 background_image = pygame.image.load('The_Shire.jpg').convert()
 x, y = 75, 700
 font = pygame.font.Font('freesansbold.ttf', 32)
-text = font.render('Score : 0', True, GREEN, BLUE)
+score_text = font.render('Score : 0', True, GREEN, BLUE)
 score_sprite = font.render('Score : 0', True, GREEN, BLUE)
 health_text = font.render('Health : 100%', True, GREEN, BLUE)
-textRect = text.get_rect()
-textRect.center = (100,100)
+score_text_rect = score_text.get_rect()
+score_text_rect.center = (100,100)
 health_text_rect = health_text.get_rect()
 health_text_rect.center = (500,100)
 character_sprite = pygame.sprite.Sprite()
@@ -60,13 +60,18 @@ iter=0
 score_group = pygame.sprite.Group(score_sprite)
 test_group = pygame.sprite.Group(obstacle1_sprite)
 health_group = pygame.sprite.Group(health_sprite)
+score=0
 health=100
 is_jump = False
 # velocity
 v = 10
+start_time = pygame.time.get_ticks()
 #mass
 m = 1
+obstacle1_sprite.rect.centerx=800
 while(dead==False):
+    if health == 0 :
+        break
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             dead = True
@@ -103,34 +108,50 @@ while(dead==False):
 
     #print("Game is running")
     #screen.blit(background_image, [0, 0])
+    current_time= pygame.time.get_ticks()
+    if current_time >= start_time + 5000:
+        print("5 seconds have passed")
+        start_time = current_time
+        score= score+1
     screen.blit(pygame.transform.scale(background_image, (800, 800)), (0, 0))
     #screen.fill((255,255,255))
     health_message='Health : '+str(health)+'%'
     health_text = font.render(health_message, True, GREEN, BLUE)
-    screen.blit(text, textRect)
     screen.blit(health_text, health_text_rect)
+    #changing score message
+    score_message='Score : '+str(score)
+    score_text = font.render(score_message, True, GREEN, BLUE)
+    screen.blit(score_text, score_text_rect)
     #pygame.draw.polygon(screen, BLACK, [[x+10, y+10], [x+0, y+20], [x+20, y+20]], 5)
     #inside loop
     character_sprite.rect.centerx = x
     character_sprite.rect.centery = y
     all_group.draw(screen)
     iter+=1
-    if iter % 2 == 0:
-        obstacle1_sprite.rect.centerx = obstacle1_sprite.rect.centerx + randint(80, 100)
-        obstacle1_sprite.rect.centery = obstacle1_sprite.rect.centery + randint(80, 100)
+    #dirvect = pygame.math.Vector2(x - obstacle1_sprite.rect.centerx,
+                                     # y - obstacle1_sprite.rect.centery)
+    #dirvect.normalize()
+# Move along this normalized vector towards the player at current speed.
+    #dirvect.scale_to_length(10)rrrrrrrrrrrr
+    #obstacle1_sprite.rect.move_ip(dirvect)
+    x_position = obstacle1_sprite.rect.centerx - randint(0,40)
+    if x_position > 75:
+        obstacle1_sprite.rect.centerx = x_position
+        obstacle1_sprite.rect.centery = 700
     else:
-        obstacle1_sprite.rect.centerx = obstacle1_sprite.rect.centerx - randint(80, 100)
-        obstacle1_sprite.rect.centery = obstacle1_sprite.rect.centery - randint(80, 100)
+        obstacle1_sprite.rect.centerx = 800
+        obstacle1_sprite.rect.centery = 700
     collide = pygame.sprite.spritecollide(character_sprite, test_group, False)
     for s in collide:
-        health=health-5
-        print('collision')
-    for s in collide:
-        health=health-5
+        health=health-20
         print('collision')
     health_collide = pygame.sprite.spritecollide(character_sprite, health_group, False)
     for s in health_collide:
         health=health+5
         print('health')
+    score_collide = pygame.sprite.spritecollide(character_sprite, score_group, False)
+    for s in score_collide:
+        score=score+20
+        print('score')
     pygame.display.flip()
     clock.tick(clock_tick_rate)
