@@ -81,3 +81,10 @@ m = 1
    start_time = pygame.time.get_ticks()
    current_time= pygame.time.get_ticks()
    
+####################################move obstacle closer to character
+dirvect = pygame.math.Vector2(x - sprite2.rect.centerx,
+                                      y - sprite2.rect.centery)
+dirvect.normalize()
+# Move along this normalized vector towards the player at current speed.
+dirvect.scale_to_length(10)
+sprite2.rect.move_ip(dirvect)
