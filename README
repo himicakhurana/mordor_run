@@ -1,0 +1,8 @@
+Project: Mordor Run
+Mordor Run is a game based on Geometry dash and lord Of The Rings. The character jumps over obstacles and runs through Middle earth on a quest to get to Mordor. Game has three levels. The first level takes place in the shire, the second level shows Rohan, and the third level is Mordor. The character has limited lives that decrease whenever they hit an obstacle, and there is a health booster that adds health. There is also a score booster that adds to the score whenever the character collides with it. 
+Technologies used:
+Python3, pygame library, procreate
+Python environment:
+Python 3.8.7
+Commands to run:
+python3 final_mordor_run.py
